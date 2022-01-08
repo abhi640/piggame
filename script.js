@@ -11,35 +11,37 @@ const btnHold = document.querySelector('.btn--hold');
 let activePlayer = 0;
 const playerScores = [0, 0];
 
-diceEl.classList.add('hidden');
-
 // starting conditions
 score1El.textContent = 0;
 score2El.textContent = 0;
+diceEl.classList.add('hidden');
 
 let currentScore = 0;
 
 // Rolling the dice
 
 btnRollDice.addEventListener('click', function () {
-  let diceValue = Math.trunc(Math.random() * 6) + 1;
-  let diceFile = `dice-${diceValue}.png`;
+  const diceValue = Math.trunc(Math.random() * 6) + 1;
 
+  // choosing dice file as per random number
+  const diceFile = `dice-${diceValue}.png`;
   diceEl.src = diceFile;
+
+  //display dice
+
   diceEl.classList.remove('hidden');
 
   // current score update
 
-  currentScore += diceValue;
-
-  if (diceValue != 1) {
-    document.querySelector('#current--${activePlayer}').textContent =
+  if (diceValue !== 1) {
+    currentScore += diceValue;
+    document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
   } else {
+    // Switching player
     currentScore = 0;
-    document.querySelector(`#current--${activePlayer}`).textContent =
+    document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
+    activePlayer = activePlayer === 0 ? 1 : 0;
   }
 });
-
-// Add current Score
