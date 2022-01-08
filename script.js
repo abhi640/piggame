@@ -14,3 +14,11 @@ player1el.textContent = 0;
 player2el.textContent = 0;
 
 // Rolling the dice
+
+rollDice.addEventListener('click', function () {
+  let diceValue = Math.trunc(Math.random() * 6) + 1;
+  let diceFile = `dice-${diceValue}.png`;
+
+  dice.src = diceFile;
+  dice.classList.remove('hidden');
+});
