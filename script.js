@@ -64,8 +64,18 @@ btnHold.addEventListener('click', function () {
   document.getElementById(`score--${activePlayer}`).textContent =
     playerScores[activePlayer];
 
-  // check for winning score
+  // check for winning score 100
 
-  // Switching player
-  switchPlayer();
+  if (playerScores[activePlayer] >= 100) {
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add('player--winner');
+
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.remove('player--active');
+  } else {
+    // Switching player
+    switchPlayer();
+  }
 });
